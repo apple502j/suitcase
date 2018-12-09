@@ -1,0 +1,9 @@
+JSON.parse(document.body.innerText).forEach(function(item){
+	const style="background-color:red;color:white;";
+	switch(item.type) {
+		case "sprite": console.log(`%cSprite ${item.name} is available: Download it on https://cdn.assets.scratch.mit.edu/internalapi/asset/${item.md5}/get/`,style);break;
+		case "costume": console.log(`%cCostume is available: Download it on https://cdn.assets.scratch.mit.edu/internalapi/asset/${item.md5}/get/`,style);break;
+		case "sound": console.log(`%cSound is available: Download it on https://cdn.assets.scratch.mit.edu/internalapi/asset/${item.md5}/get/`,style);break;
+		case "script": let pjson='{"objName":"Stage","costumes":[{"costumeName":"Backdrop1","baseLayerID":2,"baseLayerMD5":"b61b1077b0ea1931abee9dbbfa7903ff.png","bitmapResolution":2,"rotationCenterX":480,"rotationCenterY":360}],"currentCostumeIndex":0,"penLayerMD5":"5c81a336fab8be57adc039a8a2b33ca9.png","penLayerID":0,"tempoBPM":60,"videoAlpha":0.5,"children":[{"objName":"Sprite1","scripts":[[49,25,PUTSCRIPTHERE]],"costumes":[{"costumeName":"Costume","baseLayerID":1,"baseLayerMD5":"cd21514d0531fdffb22204e0ec5ed84a.svg","bitmapResolution":1,"rotationCenterX":240,"rotationCenterY":180}],"currentCostumeIndex":0,"scratchX":0,"scratchY":0,"scale":1,"direction":90,"rotationStyle":"normal","isDraggable":false,"indexInLibrary":1,"visible":true,"spriteInfo":{}}],"info":{"flashVersion":"WIN 31,0,0,108","userAgent":"Scratch 2.0 Offline Editor","swfVersion":"v461","scriptCount":1,"spriteCount":1,"videoOn":false}}';pjson=pjson.replace("PUTSCRIPTHERE",JSON.stringify(item.scripts).substring(1,JSON.stringify(item.scripts).length-1));console.log("%c"+`Script is available: Copy the code below, paste on a text editor, and save it as "project.json". For more information, see (Work-In-Progress).\n${pjson}`.replace(/%/g,"%%"),style);break;
+	}
+})
